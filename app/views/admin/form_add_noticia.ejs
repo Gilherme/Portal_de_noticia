@@ -5,24 +5,34 @@
 			<title>Formul�rio de cadastro de Not�cia</title>
 		</head>
 	<body>
+		
+		<!-- tratar os erros recebidos do express-validator caso os campos n forem preenchidos corretamente o if sera verdadeiro e exibira os erros -->
+		<% if(validacao) { %>
+			<ul>
+				<% for(let i = 0; i < validacao.length; i++) { %> 
+					<li><%= validacao[i].msg %></li>
+					<% } %>
+			</ul>
+		<% } %>
+		
 
 		<h1>Adicionar noticia</h1>
 		<form action="/noticias/salvar" method="POST">
 
 			<label for="titulo">Titulo</label>
-			<input type="text" id="titulo" name="titulo" placeholder="titulo da noticia"><br>
+			<input type="text" id="titulo" value="<%=noticia.titulo %>" name="titulo" placeholder="titulo da noticia"><br>
 
 			<label for="resumo">Resumo</label>
-			<input type="text" id="resumo" name="resumo" placeholder="resumo da noticia"><br>
+			<input type="text" id="resumo" value="<%=noticia.resumo %>" name="resumo" placeholder="resumo da noticia"><br>
 
 			<label for="autor">Autor:</label>
-			<input type="text" id="autor" name="autor" placeholder="autor"><br>
+			<input type="text" id="autor" value="<%=noticia.autor %>" name="autor" placeholder="autor"><br>
 
 			<label for="data_noticia">Data dos fatos:</label>
-			<input type="date" id="data_noticia" name="data_noticia" placeholder="data dos fatos"><br>
+			<input type="date" id="data_noticia" value="<%=noticia.data_noticia %>" name="data_noticia" placeholder="data dos fatos"><br>
 
 			<label for="noticia">Notícia</label>
-			<textarea type="text" id="noticia" name="noticia" rows="5" cols="30"> </textarea> <br>
+			<textarea type="text" id="noticia" name="noticia" rows="5" cols="30"> <%=noticia.noticia %> </textarea> <br>
 
 			<input type="submit" value="enviar">
 		</form>
